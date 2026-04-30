@@ -3,9 +3,10 @@ import { useState, ChangeEvent } from "react";
 type playerProps = {
     initialName: string;
     symbol: string;
+    isActive: boolean;
 }
 
-export default function Player({ initialName, symbol }: playerProps) {
+export default function Player({ initialName, symbol, isActive }: playerProps) {
     const [playerName, setPlayerName] = useState<string>(initialName);
     const [isEditing, setIsEditing] = useState<boolean>(false);
 
@@ -19,12 +20,12 @@ export default function Player({ initialName, symbol }: playerProps) {
 
     let playerNameTag = <span className="player-name">{playerName}</span>;
 
-    if(isEditing) {
+    if (isEditing) {
         playerNameTag = <input type="text" required value={playerName} onChange={handleInputChange} />
     }
 
     return (
-        <li>
+        <li className={isActive ? 'active' : undefined}>
             <span className="player">
                 {playerNameTag}
                 <span className="player-symbol">{symbol}</span>
