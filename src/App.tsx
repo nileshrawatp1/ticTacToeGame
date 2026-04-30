@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import GameBoard from "./components/GameBoard"
-import Player from "./components/player"
+import GameBoard from "./components/GameBoard";
+import Player from "./components/player";
+import Log from './components/Log';
 
 export type GameTurn = {
     square: {
@@ -33,7 +34,7 @@ function App() {
                 </ol>
                 <GameBoard onSquareClick={handleSquareButtonClick} turns={gameTurns} />
             </div>
-            LOG
+            <Log turns={gameTurns} />
         </main>
     )
 }
