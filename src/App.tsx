@@ -14,12 +14,12 @@ export type GameTurn = {
 function App() {
 
     const [gameTurns, setGameTurns] = useState<GameTurn[]>([]);
-    const [activePlayer, setActivePlayer] = useState<string>('X');
+    const getActivePlayer = (gameTurns: GameTurn[]) => gameTurns[0]?.player === 'X' ? 'O' : 'X';
+    let activePlayer = getActivePlayer(gameTurns);
 
     const handleSquareButtonClick = (rowIndex: number, colInder: number) => {
-        setActivePlayer((currentActivePlayer) => (currentActivePlayer === 'X') ? 'O' : 'X');
         setGameTurns((prevTurn: GameTurn[]) => {
-            const currentPlayer = prevTurn[0]?.player === 'X' ? 'O' : 'X';
+            const currentPlayer = getActivePlayer(prevTurn);
             return [{ square: { row: rowIndex, col: colInder }, player: currentPlayer }, ...prevTurn];
         })
     }
